@@ -39,16 +39,17 @@ while choice not in ("B", "L"):
     choice = input ('Which method would you like to use Las Vegas (L) or Backtracking (B) ? ').strip().upper()
 print ("You have chosen method:", choice)
 
-current_pos = (start)
-row, col = current_pos
-mvmnt_option = get_neighbours(row, col)
-chosen_move = rdm.choice(mvmnt_option)
 
-
-move_count = 0 
-visited_blocks = [start]
-current_pos = chosen_move
-visited_blocks.append(chosen_move)
-move_count = move_count + 1
-
-print (current_pos,move_count,visited_blocks)
+def las_vegas():
+    current_pos = (start)
+    row, col = current_pos
+    move_count = 0 
+    visited_blocks = [start]
+    while move_count < 200 and current_pos != end:
+        row, col = current_pos
+        mvmnt_option = get_neighbours(row, col)
+        chosen_move = rdm.choice(mvmnt_option)
+        current_pos = chosen_move
+        visited_blocks.append(chosen_move)
+        move_count = move_count + 1
+    return las_vegas
