@@ -1,7 +1,21 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import random as rdm
 mazeimg = plt.imread ('maze(1).png') 
 grid = mazeimg[5::10, 5::10, 0]
+
+
+def get_neighbours (row, col):
+    open_neighbours = []
+    mvnt_directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    for d_row, d_col in mvnt_directions:
+        new_row = row + d_row
+        new_col = col + d_col
+
+        if new_col in range (0,21) and new_row in range (0,21):
+            if grid[new_row, new_col] == 1:
+                open_neighbours.append ((new_row,new_col))
+    return open_neighbours
 
 
 for row in grid:
@@ -25,21 +39,3 @@ while choice not in ("B", "L"):
     choice = input ('Which method would you like to use Las Vegas (L) or Backtracking (B) ? ').strip().upper()
 print ("You have chosen method:", choice)
 
-current_pos = (start)
-row, col = current_pos
-
-
-
-def get_neighbours (row, col):
-    open_neighbours = []
-    mvnt_directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-    for d_row, d_col in mvnt_directions:
-        new_row = row + d_row
-        new_col = col + d_col
-
-        if new_col in range (0,21) and new_row in range (0,21):
-            if grid[new_row, new_col] == 1:
-                open_neighbours.append ((new_row,new_col))
-    return open_neighbours
-print(get_neighbours(0, 9))
-print(get_neighbours(1, 9))
