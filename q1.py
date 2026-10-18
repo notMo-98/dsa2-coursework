@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 mazeimg = plt.imread ('maze(1).png') 
 grid = mazeimg[5::10, 5::10, 0]
-print(grid.shape)
+
 
 for row in grid:
     line = ""
@@ -13,9 +13,6 @@ for row in grid:
             line = line + " "
     print(line)
 
-print(grid[0])
-np.where(grid[0] == 1)
-
 start_col = int(np.where(grid[0] == 1)[0][0])
 print(start_col)
 start = (0,start_col)
@@ -25,3 +22,8 @@ end = (20, end_col)
 print(end_col)
 print(end)
 
+choice = input ('Which method would you like to use Las Vegas (L) or Backtracking (B) ? ').strip().upper()
+while choice not in ("B" or "L") :
+    print ("Please choose which method to use")
+    choice = input ('Which method would you like to use Las Vegas (L) or Backtracking (B) ? ').strip().upper()
+print (choice)
