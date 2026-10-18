@@ -14,20 +14,32 @@ for row in grid:
     print(line)
 
 start_col = int(np.where(grid[0] == 1)[0][0])
-print(start_col)
 start = (0,start_col)
-print (start)
 end_col = int(np.where(grid[-1] == 1)[0][0])
 end = (20, end_col)
-print(end_col)
-print(end)
+
 
 choice = input ('Which method would you like to use Las Vegas (L) or Backtracking (B) ? ').strip().upper()
-while choice not in ("B" or "L") :
+while choice not in ("B", "L"):
     print ("Please choose which method to use")
     choice = input ('Which method would you like to use Las Vegas (L) or Backtracking (B) ? ').strip().upper()
-print (choice)
+print ("You have chosen method:", choice)
 
-position = start_col
-row, col = position
-print (position)
+current_pos = (start)
+row, col = current_pos
+
+
+
+def get_neighbours (row, col):
+    open_neighbours = []
+    mvnt_directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    for d_row, d_col in mvnt_directions:
+        new_row = row + d_row
+        new_col = col + d_col
+
+        if new_col in range (0,21) and new_row in range (0,21):
+            if grid[new_row, new_col] == 1:
+                open_neighbours.append ((new_row,new_col))
+    return open_neighbours
+print(get_neighbours(0, 9))
+print(get_neighbours(1, 9))
