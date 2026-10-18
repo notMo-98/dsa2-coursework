@@ -27,3 +27,7 @@ while choice not in ("B" or "L") :
     print ("Please choose which method to use")
     choice = input ('Which method would you like to use Las Vegas (L) or Backtracking (B) ? ').strip().upper()
 print (choice)
+
+position = start_col
+row, col = position
+print (position)
