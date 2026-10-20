@@ -7,7 +7,7 @@ grid = mazeimg[5::10, 5::10, 0]
 
 def get_neighbours (row, col):
     open_neighbours = []
-    mvnt_directions = [(1, 0), (0, 1), (-1,0), (0, 1)]
+    mvnt_directions = [(1, 0), (0, -1), (-1,0), (0, 1)]
     for d_row, d_col in mvnt_directions:
         new_row = row + d_row
         new_col = col + d_col
@@ -67,7 +67,19 @@ def methodology():
         plt.imshow(plot_grid)
         plt.show()
 methodology()
-print(get_neighbours(1, 9))
+
+backtrack_options = get_neighbours(1,9)
+seen_steps = [(0,9)]
+fresh_steps = []
+for item in backtrack_options:
+    if item not in seen_steps:
+        fresh_steps.append(item)
+print(fresh_steps)
 
 
-
+mvmnt_path = [start]
+print(mvmnt_path[-1])   
+mvmnt_path.append((1, 9))  
+mvmnt_path.pop()
+print(mvmnt_path)         
+print(mvmnt_path[-1])
