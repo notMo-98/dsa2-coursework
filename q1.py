@@ -48,8 +48,6 @@ end = (20, end_col)
 
 
 
-
-
 def methodology():
     choice = input ('Which method would you like to use Las Vegas (L) or Backtracking (B) ? ').strip().upper()
     while choice not in ("B", "L"):
@@ -63,6 +61,11 @@ def methodology():
             print ("The exit was found with... " , steps , "steps")
         else:
             print ("Run out of steps")
+        plot_grid = grid.copy()
+        for rows, cols in visited:
+            plot_grid[rows,cols] = 2 
+        plt.imshow(plot_grid)
+        plt.show()
 methodology()
 
 
