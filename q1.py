@@ -7,7 +7,7 @@ grid = mazeimg[5::10, 5::10, 0]
 
 def get_neighbours (row, col):
     open_neighbours = []
-    mvnt_directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    mvnt_directions = [(1, 0), (0, 1), (-1,0), (0, 1)]
     for d_row, d_col in mvnt_directions:
         new_row = row + d_row
         new_col = col + d_col
@@ -24,7 +24,7 @@ def las_vegas():
     visited_blocks = [start]
     while move_count < 200 and current_pos != end:
         row, col = current_pos
-        mvmnt_option = get_neighbours(row, col)
+        mvmnt_option = get_neighbours(row,col)
         chosen_move = rdm.choice(mvmnt_option)
         current_pos = chosen_move
         visited_blocks.append(chosen_move)
@@ -67,7 +67,7 @@ def methodology():
         plt.imshow(plot_grid)
         plt.show()
 methodology()
-
+print(get_neighbours(1, 9))
 
 
 
