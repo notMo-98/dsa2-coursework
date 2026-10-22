@@ -68,18 +68,25 @@ def methodology():
         plt.show()
 methodology()
 
-backtrack_options = get_neighbours(1,9)
-seen_steps = [(0,9)]
-fresh_steps = []
-for item in backtrack_options:
-    if item not in seen_steps:
-        fresh_steps.append(item)
-print(fresh_steps)
 
 
 mvmnt_path = [start]
-print(mvmnt_path[-1])   
-mvmnt_path.append((1, 9))  
-mvmnt_path.pop()
-print(mvmnt_path)         
-print(mvmnt_path[-1])
+visited_blocks = [start]
+while mvmnt_path[-1] != end:
+    current_block = mvmnt_path[-1]
+    row, col = current_block
+    mvmnt_options = get_neighbours(row,col)
+
+    fresh_steps = []
+    for item in mvmnt_options:
+        if item not in visited_blocks:
+            fresh_steps.append(item)
+
+    if fresh_steps:
+        next_step = fresh_steps[0]
+        mvmnt_path.append(next_step)
+        visited_blocks.append(next_step)
+    else:
+        mvmnt_path.pop()
+print (mvmnt_path)
+print (visited_blocks)
