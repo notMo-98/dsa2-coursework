@@ -32,6 +32,31 @@ def las_vegas():
     sucess_run = current_pos == end
     return sucess_run,move_count, visited_blocks 
 
+def backtracking():
+    mvmnt_path = [start]
+    visited_blocks = [start]
+    while mvmnt_path[-1] != end:
+        current_block = mvmnt_path[-1]
+        row, col = current_block
+        mvmnt_options = get_neighbours(row,col)
+
+        fresh_steps = []
+        for item in mvmnt_options:
+            if item not in visited_blocks:
+                fresh_steps.append(item)
+
+        if fresh_steps:
+            next_step = fresh_steps[0]
+            mvmnt_path.append(next_step)
+            visited_blocks.append(next_step)
+        else:
+            mvmnt_path.pop()
+    print (mvmnt_path)
+    print (visited_blocks)
+backtracking
+
+
+
 for row in grid:
     line = ""
     for cell in row:
@@ -69,24 +94,3 @@ def methodology():
 methodology()
 
 
-
-mvmnt_path = [start]
-visited_blocks = [start]
-while mvmnt_path[-1] != end:
-    current_block = mvmnt_path[-1]
-    row, col = current_block
-    mvmnt_options = get_neighbours(row,col)
-
-    fresh_steps = []
-    for item in mvmnt_options:
-        if item not in visited_blocks:
-            fresh_steps.append(item)
-
-    if fresh_steps:
-        next_step = fresh_steps[0]
-        mvmnt_path.append(next_step)
-        visited_blocks.append(next_step)
-    else:
-        mvmnt_path.pop()
-print (mvmnt_path)
-print (visited_blocks)
