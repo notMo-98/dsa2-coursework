@@ -97,13 +97,15 @@ def methodology():
     plt.imshow(plot_grid)
     plt.show()
     
-#methodology()
-counter = 0
-for i_ in range (10000):
-    success, steps, visited = backtracking()
-    if success:
-        counter = counter + 1
-print("finished")
-print(counter)
-print(counter / 10000 * 100)
+methodology()
+
+def testruns(solver):
+    counter = 0
+    for i_ in range (10000):
+        success, steps, visited = solver()
+        if success:
+            counter = counter + 1
+    return counter / 10000 * 100
+print("Las Vegas success rate:", testruns(las_vegas))
+print("Backtracking success rate:", testruns(backtracking))
 
