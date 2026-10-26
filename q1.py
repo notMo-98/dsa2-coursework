@@ -100,7 +100,7 @@ def methodology():
 #methodology()
 counter = 0
 for i_ in range (10000):
-    success, steps, visited = las_vegas()
+    success, steps, visited = backtracking()
     if success:
         counter = counter + 1
 print("finished")
