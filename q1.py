@@ -97,6 +97,13 @@ def methodology():
     plt.imshow(plot_grid)
     plt.show()
     
-methodology()
-
+#methodology()
+counter = 0
+for i_ in range (10000):
+    success, steps, visited = backtracking()
+    if success:
+        counter = counter + 1
+print("finished")
+print(counter)
+print(counter / 10000 * 100)
 
