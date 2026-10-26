@@ -33,28 +33,27 @@ def las_vegas():
     return sucess_run,move_count, visited_blocks 
 
 def backtracking():
+    step_count = 0
     mvmnt_path = [start]
     visited_blocks = [start]
     while mvmnt_path[-1] != end:
         current_block = mvmnt_path[-1]
         row, col = current_block
         mvmnt_options = get_neighbours(row,col)
-
+        step_count = step_count + 1
         fresh_steps = []
         for item in mvmnt_options:
             if item not in visited_blocks:
                 fresh_steps.append(item)
-
+    
         if fresh_steps:
             next_step = fresh_steps[0]
             mvmnt_path.append(next_step)
             visited_blocks.append(next_step)
         else:
             mvmnt_path.pop()
-    print (mvmnt_path)
-    print (visited_blocks)
-backtracking
-
+    sucess_run = mvmnt_path[-1] == end
+    return sucess_run, step_count, visited_blocks
 
 
 for row in grid:
@@ -65,6 +64,8 @@ for row in grid:
         else:
             line = line + " "
     print(line)
+
+
 
 start_col = int(np.where(grid[0] == 1)[0][0])
 start = (0,start_col)
@@ -82,15 +83,20 @@ def methodology():
 
     if choice == 'L':
         success, steps, visited = las_vegas()
-        if success:
-            print ("The exit was found with... " , steps , "steps")
-        else:
-            print ("Run out of steps")
-        plot_grid = grid.copy()
-        for rows, cols in visited:
-            plot_grid[rows,cols] = 2 
-        plt.imshow(plot_grid)
-        plt.show()
+
+    else:
+       success, steps, visited = backtracking()
+
+    if success:
+        print ("The exit was found with... " , steps , "steps")
+    else:
+        print ("Run out of steps")
+    plot_grid = grid.copy()
+    for rows, cols in visited:
+        plot_grid[rows,cols] = 2 
+    plt.imshow(plot_grid)
+    plt.show()
+    
 methodology()
 
 
